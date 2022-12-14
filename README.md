@@ -41,7 +41,7 @@ git push origin [branch-name] //push到指定分支，一般是自己的分支
 
 以上操作都可以使用ide(如vscode、IDEA等)自带的可视化git工具完成，但测试时尽量先避免修改dev或master的操作，熟练后再修改这两个分支。更多操作自行参考网上有关git的教程。
 
-*真的学不完了TAT*
+**真的学不完了TAT**
 
 
 
