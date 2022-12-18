@@ -3,9 +3,14 @@
 
 declare namespace API {
   type CurrentUser = {
-    name?: string;
+    userName?: string;
+    userAccount?: string;
+    userPassword?: string;
+    userId?: string;
+    userSex?: string;
+    userType?: string;
+    
     avatar?: string;
-    userid?: string;
     email?: string;
     signature?: string;
     title?: string;
@@ -14,7 +19,7 @@ declare namespace API {
     notifyCount?: number;
     unreadCount?: number;
     country?: string;
-    access?: string;
+    access?: string; //权限
     geographic?: {
       province?: { label?: string; key?: string };
       city?: { label?: string; key?: string };
@@ -22,6 +27,7 @@ declare namespace API {
     address?: string;
     phone?: string;
   };
+  
 
   type LoginResult = {
     status?: string;
@@ -62,7 +68,7 @@ declare namespace API {
   };
 
   type LoginParams = {
-    username?: string;
+    account?: string;
     password?: string;
     autoLogin?: boolean;
     type?: string;
