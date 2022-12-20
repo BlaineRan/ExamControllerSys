@@ -5,7 +5,7 @@ import type { ItemType } from 'antd/lib/menu/hooks/useItems';
 import { stringify } from 'querystring';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import React, { useCallback } from 'react';
-import { history, useModel } from 'umi';
+import { history,useModel } from 'umi';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
 
@@ -17,6 +17,7 @@ export type GlobalHeaderRightProps = {
  * 退出登录，并且将当前的 url 保存
  */
 const loginOut = async () => {
+  localStorage.clear();
   await outLogin();
   const { query = {}, search, pathname } = history.location;
   const { redirect } = query;
@@ -65,7 +66,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 
   const { currentUser } = initialState;
 
-  if (!currentUser || !currentUser.name) {
+  if (!currentUser || !currentUser.userName) {
     return loading;
   }
 
@@ -109,3 +110,5 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 };
 
 export default AvatarDropdown;
+
+

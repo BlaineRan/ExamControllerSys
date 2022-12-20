@@ -3,11 +3,10 @@
 import { request } from 'umi';
 
 /** 获取当前的用户 GET /api/currentUser */
-export async function currentUser(options?: { [key: string]: any }) {
-  return request<{
-    data: API.CurrentUser;
-  }>('/api/currentUser', {
-    method: 'GET',
+export async function currentUser(body?:any, options?: { [key: string]: any }) {
+  return request<API.CurrentUser>('http://192.168.20.1:8080/user/currentUser', {
+    method: 'POST',
+    data:body,
     ...(options || {}),
   });
 }
@@ -19,6 +18,18 @@ export async function outLogin(options?: { [key: string]: any }) {
     ...(options || {}),
   });
 }
+
+/** test接口 POST /api/login/account */
+export async function sessionTest() {
+  return request<API.LoginResult>('http://192.168.20.1:8080/user/test', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // data: body,
+  });
+}
+
 
 /** 登录接口 POST /api/login/account */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {

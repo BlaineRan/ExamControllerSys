@@ -3,6 +3,7 @@ import RightContent from '@/components/RightContent';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import type { Settings as LayoutSettings } from '@ant-design/pro-components';
 import { PageLoading, SettingDrawer } from '@ant-design/pro-components';
+import { message } from 'antd';
 import type { RunTimeLayoutConfig } from 'umi';
 import { history, Link } from 'umi';
 import defaultSettings from '../config/defaultSettings';
@@ -27,9 +28,10 @@ export async function getInitialState(): Promise<{
 }> {
   const fetchUserInfo = async () => {
     try {
-      const msg = await queryCurrentUser();
+      var token = localStorage.getItem('token');
+      const msg = await queryCurrentUser({token:token});
       console.log(msg);
-      return msg.data;
+      return msg;
     } catch (error) {
       history.push(loginPath);
     }
@@ -64,6 +66,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       // 如果没有登录，重定向到 login
       if (!initialState?.currentUser && location.pathname !== loginPath) {
         history.push(loginPath);
+        message.error("请先登录")
       }
     },
     links: isDev
